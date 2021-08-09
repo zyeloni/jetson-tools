@@ -4,11 +4,11 @@ services:
     container_name: sql-server
     image: "mcr.microsoft.com/mssql/server"
     environment: 
-      SA_PASSWORD: "admin1234"
+      SA_PASSWORD: "fakePassw0rd"
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Express"
     ports:
-      - "5434:5434"
+      - "1433:1433"
     volumes: 
       - "./data-db/data:/var/opt/mssql/data"
       - "./data-db/logs:/var/opt/mssql/log"
@@ -16,3 +16,6 @@ services:
   app:
     build: 
       context: ./app
+    container_name: python-app
+    volumes: 
+      - "./app:/usr/src/app"
